@@ -1,12 +1,11 @@
 package com.kevcode.springpractice.domain.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Employee extends Person{
+
     private String cardNumber;
     @OneToMany
     @JoinColumn(name="id")

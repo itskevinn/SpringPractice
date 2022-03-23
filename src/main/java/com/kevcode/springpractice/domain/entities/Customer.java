@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Customer extends Person {
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private List<Ticket> tickets;
 

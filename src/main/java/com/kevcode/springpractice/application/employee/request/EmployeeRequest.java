@@ -1,26 +1,13 @@
-package com.kevcode.springpractice.application.customer.dto;
-
-import com.kevcode.springpractice.domain.entities.Ticket;
+package com.kevcode.springpractice.application.employee.request;
 
 import java.util.Date;
-import java.util.List;
 
-public class CustomerDto {
-    private Long id;
+public class EmployeeRequest {
     private String name;
     private String lastName;
     private Date birthDate;
     private int age;
-
-    private List<Ticket> tickets;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String cardNumber;
 
     public String getName() {
         return name;
@@ -54,12 +41,12 @@ public class CustomerDto {
         this.age = age;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
 }

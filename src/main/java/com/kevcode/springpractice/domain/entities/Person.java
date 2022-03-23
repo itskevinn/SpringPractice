@@ -1,26 +1,42 @@
 package com.kevcode.springpractice.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kevcode.springpractice.domain.entities.base.DateTimeHelper;
 import com.kevcode.springpractice.domain.entities.base.EntityBase;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import java.time.LocalDate;
-import java.time.Period;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-
+@MappedSuperclass
 public abstract class Person extends EntityBase {
-    private String name;
-    private String lastName;
-    private Date birthDate;
 
+    @JsonIgnore
+    @Transient
+    private DateTimeHelper dateTimeHelper;
+    private String name;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "BIRTH_DATE")
+    private Date birthDate;
     private int age;
 
-    public int getAge(){
-        LocalDate birthDateLocal = LocalDate.parse(getBirthDate().toString());
-        Period period = Period.between(birthDateLocal, LocalDate.now());
-        return period.getYears();
+    public Person(){
+        dateTimeHelper = new DateTimeHelper();;
     }
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int calculateYearDiff(){
+        return dateTimeHelper.calculateYearDiff(birthDate);
+    }
+
     public String getName() {
         return name;
     }
